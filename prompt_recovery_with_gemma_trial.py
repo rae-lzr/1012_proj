@@ -16,12 +16,13 @@ from IPython.display import display, Markdown
 
 """# Configuration"""
 from configurations.cfg import CFG
+from configurations.cfg_gcp import CFGGCP
 
 """# Reproducibility
 Sets value for random seed to produce similar result in each run.
 """
 
-keras.utils.set_random_seed(CFG.seed)
+keras.utils.set_random_seed(CFGGCP.seed)
 
 """# Data
 
@@ -36,7 +37,7 @@ These datasets includes:
 """
 
 # 100 Rewritten texts
-df = pd.read_csv(CFG.input_dataset_path)
+df = pd.read_csv(CFGGCP.input_dataset_path)
 
 """# Prompt Engineering
 
@@ -91,7 +92,7 @@ def colorize_text(text):
 """# Modeling
 """
 
-gemma_lm = keras_nlp.models.GemmaCausalLM.from_preset(CFG.preset)
+gemma_lm = keras_nlp.models.GemmaCausalLM.from_preset(CFGGCP.preset)
 # gemma_lm.summary()
 
 """## Gemma LM Preprocessor
@@ -170,7 +171,7 @@ gemma_lm.backbone.enable_lora(rank=4)
 """
 
 # Limit the input sequence length to 512 (to control memory usage).
-gemma_lm.preprocessor.sequence_length = CFG.sequence_length
+gemma_lm.preprocessor.sequence_length = CFGGCP.sequence_length
 
 # Compile the model with loss, optimizer, and metric
 gemma_lm.compile(
@@ -180,10 +181,10 @@ gemma_lm.compile(
 )
 
 # Train model
-gemma_lm.fit(data, epochs=CFG.epochs, batch_size=CFG.batch_size)
+gemma_lm.fit(data, epochs=CFGGCP.epochs, batch_size=CFGGCP.batch_size)
 
 base_filename, _ = os.path.splitext(CFG.input_file_name)
-gemma_lm.save(os.path.join(CFG.dataset_path, f'finetune_{CFG.preset}_{base_filename}.keras'))
+gemma_lm.save(os.path.join(CFGGCP.dataset_path, f'finetune_{CFGGCP.preset}_{base_filename}.keras'))
 
 """# Inference after fine-tuning
 
