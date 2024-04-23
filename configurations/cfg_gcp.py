@@ -16,7 +16,7 @@ parser.add_argument('--epochs', type=int, default=1,
 
 args = parser.parse_args()
 
-class CFG:
+class CFGGCP:
     seed = 42
     dataset_path = os.path.join(os.path.expanduser('~'), '/dataset_1012/')
     input_file_name = args.input_file
