@@ -183,7 +183,7 @@ gemma_lm.compile(
 gemma_lm.fit(data, epochs=CFG.epochs, batch_size=CFG.batch_size)
 
 base_filename, _ = os.path.splitext(CFG.input_file_name)
-gemma_lm.save(os.path.join(CFG.dataset_path, f'finetune_{CFG.preset}_{base_filename}_epoch{CFG.epochs}.keras'))
+gemma_lm.save(os.path.join(CFG.dataset_path, f'finetune_{CFG.preset}_{base_filename}.keras'))
 
 """# Inference after fine-tuning
 
