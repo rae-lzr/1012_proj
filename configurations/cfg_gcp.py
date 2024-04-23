@@ -18,7 +18,7 @@ args = parser.parse_args()
 
 class CFGGCP:
     seed = 42
-    dataset_path = os.path.join(os.path.expanduser('~'), '/dataset_1012/')
+    dataset_path = os.path.join(os.environ['HOME'], '/dataset_1012/')
     input_file_name = args.input_file
     input_dataset_path = os.path.join(dataset_path, input_file_name)
     preset = args.preset
