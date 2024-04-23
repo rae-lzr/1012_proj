@@ -7,7 +7,7 @@ import keras_nlp
 
 import numpy as np
 import pandas as pd
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 tqdm.pandas() # progress bar for pandas
 
 import plotly.graph_objs as go
